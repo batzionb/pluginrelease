@@ -1,13 +1,111 @@
-    - disabled: false
-        package: "https://github.com/batzionb/pluginrelease/releases/download/1.1.0-rc.0-0/backstage-plugin-orchestrator-1.1.0-rc.0-0.tgz"
-        integrity: sha512-uxkNFS/4nkVM6FRq0Uvnznvxcm/3MNdh11R6sRsbmKCP4KF4N9T2GF4lgfD7J+p7EuGMD4UFnjKjaR77v0NGaQ==
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: dynamic-plugins-rhdh
+  namespace: rhdh-operator
+  uid: 781fd885-76fe-4448-9840-5319381963b9
+  resourceVersion: '100198028'
+  creationTimestamp: '2024-06-20T05:38:04Z'
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    rhdh.redhat.com/ext-config-sync: 'true'
+  annotations:
+    meta.helm.sh/release-name: orchestrator
+    meta.helm.sh/release-namespace: orchestrator
+    rhdh.redhat.com/backstage-name: backstage
+  managedFields:
+    - manager: manager
+      operation: Update
+      apiVersion: v1
+      time: '2024-06-20T05:40:08Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:rhdh.redhat.com/backstage-name': {}
+          'f:labels':
+            'f:rhdh.redhat.com/ext-config-sync': {}
+    - manager: helm
+      operation: Update
+      apiVersion: v1
+      time: '2024-06-20T13:45:54Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data': {}
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:meta.helm.sh/release-name': {}
+            'f:meta.helm.sh/release-namespace': {}
+          'f:labels':
+            .: {}
+            'f:app.kubernetes.io/managed-by': {}
+    - manager: Mozilla
+      operation: Update
+      apiVersion: v1
+      time: '2024-06-20T13:53:16Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data':
+          'f:dynamic-plugins.yaml': {}
+data:
+  dynamic-plugins.yaml: |
+    includes:
+      - dynamic-plugins.default.yaml
+    plugins:
+      - package: ./dynamic-plugins/dist/backstage-plugin-kubernetes-backend-dynamic
+        disabled: false
+        pluginConfig:
+          kubernetes:
+            customResources:
+              - group: 'tekton.dev'
+                apiVersion: 'v1'
+                plural: 'pipelines'
+              - group: 'tekton.dev'
+                apiVersion: 'v1'
+                plural: 'pipelineruns'
+              - group: 'tekton.dev'
+                apiVersion: 'v1'
+                plural: 'taskruns'
+              - group: 'route.openshift.io'
+                apiVersion: 'v1'
+                plural: 'routes'
+            serviceLocatorMethod:
+              type: 'multiTenant'
+            clusterLocatorMethods:
+              - type: 'config'
+                clusters:
+                  - name: 'OpenShift Orchestrator Demo'
+                    url: ${K8S_CLUSTER_URL}
+                    authProvider: 'serviceAccount'
+                    skipTLSVerify: true
+                    serviceAccountToken: ${K8S_CLUSTER_TOKEN}
+      - package: ./dynamic-plugins/dist/backstage-plugin-kubernetes
+        disabled: false
+        pluginConfig:
+          dynamicPlugins:
+            frontend:
+              backstage.plugin-kubernetes:
+                mountPoints:
+                  - mountPoint: entity.page.kubernetes/cards
+                    importName: EntityKubernetesContent
+                    config:
+                      layout:
+                        gridColumn: "1 / -1"
+                      if:
+                        anyOf:
+                          - hasAnnotation: backstage.io/kubernetes-id
+                          - hasAnnotation: backstage.io/kubernetes-namespace
+      - disabled: false
+        package: "https://github.com/batzionb/pluginrelease/releases/download/backend-1.1.0-rc.0-0/backstage-plugin-orchestrator-backend-dynamic-1.1.0-rc.0-0.tgz"
+        integrity: sha512-NIIGpwH/uJaMknTdORdnqsHfPeI/OrAl2biqELal1e9tK2r6PrVWfIWr9XoH5AfOjtQjbeAe7joiLwhM+uyVAw==
         pluginConfig:
           orchestrator:
             dataIndexService:
               url: http://sonataflow-platform-data-index-service.sonataflow-infra
       - disabled: false
-        package: "https://github.com/batzionb/pluginrelease/releases/download/backend-1.1.0-rc.0-0/backstage-plugin-orchestrator-backend-dynamic-1.1.0-rc.0-0.tgz"
-        integrity: sha512-NIIGpwH/uJaMknTdORdnqsHfPeI/OrAl2biqELal1e9tK2r6PrVWfIWr9XoH5AfOjtQjbeAe7joiLwhM+uyVAw==
+        package: "https://github.com/batzionb/pluginrelease/releases/download/1.1.0-rc.0-0/backstage-plugin-orchestrator-1.1.0-rc.0-0.tgz"
+        integrity: sha512-uxkNFS/4nkVM6FRq0Uvnznvxcm/3MNdh11R6sRsbmKCP4KF4N9T2GF4lgfD7J+p7EuGMD4UFnjKjaR77v0NGaQ==
         pluginConfig:
           dynamicPlugins:
             frontend:
