@@ -1,0 +1,54 @@
+    - disabled: false
+        package: "https://github.com/batzionb/pluginrelease/releases/download/1.1.0-rc.0-0/backstage-plugin-orchestrator-1.1.0-rc.0-0.tgz"
+        integrity: sha512-uxkNFS/4nkVM6FRq0Uvnznvxcm/3MNdh11R6sRsbmKCP4KF4N9T2GF4lgfD7J+p7EuGMD4UFnjKjaR77v0NGaQ==
+        pluginConfig:
+          orchestrator:
+            dataIndexService:
+              url: http://sonataflow-platform-data-index-service.sonataflow-infra
+      - disabled: false
+        package: "https://github.com/batzionb/pluginrelease/releases/download/backend-1.1.0-rc.0-0/backstage-plugin-orchestrator-backend-dynamic-1.1.0-rc.0-0.tgz"
+        integrity: sha512-NIIGpwH/uJaMknTdORdnqsHfPeI/OrAl2biqELal1e9tK2r6PrVWfIWr9XoH5AfOjtQjbeAe7joiLwhM+uyVAw==
+        pluginConfig:
+          dynamicPlugins:
+            frontend:
+              janus-idp.backstage-plugin-orchestrator:
+                appIcons:
+                  - importName: OrchestratorIcon
+                    module: OrchestratorPlugin
+                    name: orchestratorIcon
+                dynamicRoutes:
+                  - importName: OrchestratorPage
+                    menuItem:
+                      icon: orchestratorIcon
+                      text: Orchestrator
+                    module: OrchestratorPlugin
+                    path: /orchestrator
+      - disabled: false
+        package: https://github.com/mareklibra/gh-pages/raw/main/download/002/plugin-notifications-dynamic-0.2.0-redhat.10001.tgz
+        integrity: sha512-Rq/Nn3N/y94t4oeQagW+o8YwTUVXt8utSkKGJVAa3AGrnXs6FkMCb5Moy0CoYUom5ld4O2Mw0EHoaAgmm/IvWg==
+        pluginConfig:
+          dynamicPlugins:
+            frontend:
+              redhat.plugin-notifications:
+                dynamicRoutes:
+                  - importName: NotificationsPage
+                    menuItem:
+                      config:
+                        props:
+                          titleCounterEnabled: true
+                          webNotificationsEnabled: false
+                      importName: NotificationsSidebarItem
+                    path: /notifications
+      - disabled: false
+        package: https://github.com/mareklibra/gh-pages/raw/main/download/002/plugin-signals-dynamic-0.0.5-redhat.10001.tgz
+        integrity: sha512-aAYWPyTA113RbgZsGdWScVaQ2M6JZRmA7yMDpFR1QVJFn9FdqD41u37GUNKcSbpOCSZogH0d91d5QNECSX667g==
+        pluginConfig:
+          dynamicPlugins:
+            frontend:
+              redhat.plugin-signals: {}
+      - disabled: false
+        package: https://github.com/mareklibra/gh-pages/raw/main/download/002/plugin-notifications-backend-dynamic-0.2.0-redhat.10001.tgz
+        integrity: sha512-MiST7VKvqombWKPdmPpdO1nLc9BCsEJTIwg6wUTbT/uu3YOiQg/0U8JBjY3wihJp/iEb+pwAyDysbq8Uqz11Hg==
+      - disabled: false
+        package: https://github.com/mareklibra/gh-pages/raw/main/download/002/plugin-signals-backend-dynamic-0.1.3-redhat.10001.tgz
+        integrity: sha512-fd9OLCFZZV5fVDDihPETxTnhc/AKUAKETnAR15vL0qOcHEpersytVogOTdS07YSiNLcFjMXl+YJi9xVLfxBHWw==
