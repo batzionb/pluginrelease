@@ -48,15 +48,15 @@ data:
                           - hasAnnotation: backstage.io/kubernetes-id
                           - hasAnnotation: backstage.io/kubernetes-namespace
       - disabled: false
-        package: "https://github.com/batzionb/pluginrelease/releases/download/backend-1.1.0-rc.0-0/backstage-plugin-orchestrator-backend-dynamic-1.1.0-rc.0-0.tgz"
-        integrity: sha512-NIIGpwH/uJaMknTdORdnqsHfPeI/OrAl2biqELal1e9tK2r6PrVWfIWr9XoH5AfOjtQjbeAe7joiLwhM+uyVAw==
+        package: "https://github.com/batzionb/pluginrelease/releases/download/backend-1.2.0-rc.1/backstage-plugin-orchestrator-backend-dynamic-1.2.0-rc.1.tgz"
+        integrity: sha512-uF7BVOTQEofTyKGvEW7ipPhbHCjsXw8wvSx1YyAQDSsVgq7l6FckUZN2jT0kXmiGqH2f7C7+xKIA
         pluginConfig:
           orchestrator:
             dataIndexService:
               url: http://sonataflow-platform-data-index-service.sonataflow-infra
       - disabled: false
-        package: "https://github.com/batzionb/pluginrelease/releases/download/1.1.0-rc.0-0/backstage-plugin-orchestrator-1.1.0-rc.0-0.tgz"
-        integrity: sha512-uxkNFS/4nkVM6FRq0Uvnznvxcm/3MNdh11R6sRsbmKCP4KF4N9T2GF4lgfD7J+p7EuGMD4UFnjKjaR77v0NGaQ==
+        package: "https://github.com/batzionb/pluginrelease/releases/download/1.2.0-rc.1/backstage-plugin-orchestrator-1.2.0-rc.1.tgz"
+        integrity: sha512-4C3ZeaGeJdrDWRlWGm1sxiZrfn5cIYynlIsKCcKq+aGpZKJABaKesuvGScBX++jmTbCUMDwPXZmW
         pluginConfig:
           dynamicPlugins:
             frontend:
